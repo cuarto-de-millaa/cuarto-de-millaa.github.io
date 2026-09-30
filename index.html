@@ -1,70 +1,447 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuarto de Milla</title>
-    <link rel="stylesheet" href="estilo.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuarto de Milla | Yerba mate de Corpus, Misiones</title>
+<meta name="description" content="Cuarto de Milla y Herencia Guaraní: yerba mate de la Yerbatera San Jorge, en Corpus, Misiones. Conocé su historia, cómo se hace y comprala online.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#1F3324">
+<link rel="canonical" href="https://cuarto-de-millaa.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧉</text></svg>">
+
+<!-- Al compartir el link en WhatsApp, Instagram, etc. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Cuarto de Milla">
+<meta property="og:title" content="Cuarto de Milla | Yerba mate de Corpus, Misiones">
+<meta property="og:description" content="Del origen a tu mate. Yerba mate de la Yerbatera San Jorge, Corpus, Misiones.">
+<meta property="og:url" content="https://cuarto-de-millaa.github.io/">
+<meta property="og:image" content="https://cuarto-de-millaa.github.io/img/ruinas.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Datos para Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Yerbatera San Jorge",
+  "description": "Yerba mate de Corpus, Misiones. Marcas: Cuarto de Milla y Herencia Guaraní.",
+  "url": "https://cuarto-de-millaa.github.io/",
+  "image": "https://cuarto-de-millaa.github.io/img/ruinas.jpg",
+  "brand": [{"@type": "Brand", "name": "Cuarto de Milla"}, {"@type": "Brand", "name": "Herencia Guaraní"}],
+  "address": {"@type": "PostalAddress", "streetAddress": "Ruta 6, Lote 47", "addressLocality": "Corpus", "addressRegion": "Misiones", "addressCountry": "AR"}
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#1F3324;      /* verde yerba oscuro */
+  --verde-2:#2F4A32;
+  --terracota:#B5482A;  /* el rojo de las ruinas */
+  --arena:#EFE4CC;      /* fondo claro */
+  --amarillo:#F2C318;   /* el del paquete */
+  --cielo:#4F7CA3;
+  --texto:#22261F;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--texto);background:var(--arena);line-height:1.6;font-size:17px}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+/* ---------- Menú ---------- */
+header{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(31,51,36,.92);backdrop-filter:blur(6px)}
+.logo{font-family:var(--serif);font-weight:700;color:var(--arena);text-decoration:none;font-size:1.2rem}
+nav{display:flex;gap:22px;align-items:center}
+nav a{color:var(--arena);text-decoration:none;font-size:.95rem}
+nav a:hover{color:var(--amarillo)}
+.btn{display:inline-block;padding:13px 26px;border-radius:999px;background:var(--terracota);color:#fff;text-decoration:none;font-weight:700;border:2px solid var(--terracota);transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px);background:#963A20}
+.btn.claro{background:transparent;color:var(--arena);border-color:var(--arena)}
+.btn.claro:hover{background:var(--arena);color:var(--verde)}
+nav .btn{padding:8px 18px}
+
+/* ---------- Portada ---------- */
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding:120px 5vw 9vh;color:var(--arena);
+  background:
+   linear-gradient(to top,rgba(31,51,36,.95) 5%,rgba(31,51,36,.25) 60%,rgba(31,51,36,.35)),
+   url('img/ruinas.jpg') center/cover,
+   var(--verde-2)}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.8rem,9vw,6.5rem);line-height:1.02;letter-spacing:-.02em;max-width:12ch}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 span b{display:block;font-weight:inherit;transform:translateY(105%);animation:sube .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 span:nth-child(2) b{animation-delay:.15s;font-style:italic;color:var(--amarillo)}
+.hero h1 span:nth-child(3) b{animation-delay:.3s}
+@keyframes sube{to{transform:none}}
+.hero p{margin:22px 0 30px;max-width:38ch;font-size:1.15rem}
+.acciones{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ---------- Secciones ---------- */
+section{padding:clamp(60px,10vw,110px) 5vw}
+h2{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin-bottom:20px;color:var(--verde)}
+.origen{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);align-items:center;max-width:1100px;margin:auto}
+.origen p{font-family:var(--serif);font-size:1.15rem;line-height:1.8;margin-bottom:14px}
+.origen .foto{aspect-ratio:4/5;border-radius:200px 200px 12px 12px;background:var(--terracota) url('img/origen.jpg') center/cover}
+@media(max-width:760px){.origen{grid-template-columns:1fr}.origen .foto{aspect-ratio:4/3;border-radius:12px}}
+
+/* ---------- Yerbas (con animación al pasar el mouse) ---------- */
+.yerbas{background:var(--verde);color:var(--arena)}
+.yerbas h2{color:var(--arena);text-align:center}
+.yerbas .sub{text-align:center;max-width:46ch;margin:0 auto 50px}
+.grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;max-width:1000px;margin:auto}
+.tarjeta{position:relative;overflow:hidden;border-radius:18px;aspect-ratio:3/4;background:var(--verde-2);cursor:pointer;outline-offset:4px}
+.tarjeta .img{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.6rem;text-align:center;padding:20px;color:var(--amarillo);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.tarjeta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.tarjeta:hover img,.tarjeta:focus-within img,.tarjeta:hover .img,.tarjeta:focus-within .img{transform:scale(1.12) rotate(-2deg)}
+.tarjeta .nombre{position:absolute;left:0;right:0;bottom:0;padding:22px;font-family:var(--serif);font-size:1.5rem;background:linear-gradient(to top,rgba(31,51,36,.9),transparent);transition:opacity .3s}
+.tarjeta .detalle{position:absolute;inset:auto 0 0 0;padding:26px 22px;background:var(--terracota);color:#fff;transform:translateY(101%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.tarjeta:hover .detalle,.tarjeta:focus-within .detalle{transform:none}
+.tarjeta:hover .nombre,.tarjeta:focus-within .nombre{opacity:0}
+.detalle h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:6px}
+.detalle p{font-size:.95rem;margin-bottom:16px}
+.detalle .btn{background:var(--arena);color:var(--terracota);border-color:var(--arena);padding:10px 22px}
+
+/* ---------- Historia, proceso, diferencia ---------- */
+.historia{max-width:760px;margin:auto}
+.historia p{font-family:var(--serif);font-size:1.15rem;line-height:1.8;margin-bottom:14px}
+.proceso{background:#E4D5B5}
+.proceso h2,.diferencia h2,.mundo h2{text-align:center}
+.pasos{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px;max-width:1100px;margin:40px auto 0;counter-reset:paso}
+.pasos li{counter-increment:paso;position:relative;padding-top:58px}
+.pasos li::before{content:counter(paso);position:absolute;top:0;left:0;width:44px;height:44px;border-radius:50%;background:var(--terracota);color:#fff;font-family:var(--serif);font-size:1.3rem;display:grid;place-items:center}
+.pasos h3,.dif h3{font-family:var(--serif);font-size:1.3rem;color:var(--verde);margin-bottom:6px}
+.grilla-dif{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;max-width:1000px;margin:40px auto 0}
+.dif{padding:6px 0 6px 20px;border-left:5px solid var(--terracota)}
+
+/* ---------- Yerba por el mundo ---------- */
+.mundo .sub{text-align:center;max-width:46ch;margin:0 auto 40px}
+.galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:1100px;margin:auto}
+.foto-mundo{position:relative;overflow:hidden;aspect-ratio:1;border-radius:14px;background:var(--cielo)}
+.foto-mundo .ph{position:absolute;inset:0;display:grid;place-items:center;padding:16px;text-align:center;font-family:var(--serif);font-size:1.3rem;color:#fff}
+.foto-mundo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.foto-mundo:hover img{transform:scale(1.1)}
+.foto-mundo figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 12px;color:#fff;font-size:.95rem;background:linear-gradient(to top,rgba(0,0,0,.7),transparent)}
+
+/* ---------- Contacto ---------- */
+.contacto{text-align:center;max-width:700px;margin:auto}
+.contacto p{margin-bottom:10px}
+.contacto .acciones{justify-content:center;margin-top:26px}
+.contacto .btn.claro{color:var(--verde);border-color:var(--verde)}
+.contacto .btn.claro:hover{background:var(--verde);color:var(--arena)}
+footer{background:var(--verde);color:var(--arena);text-align:center;padding:26px 5vw;font-size:.9rem}
+
+/* Botón flotante de WhatsApp */
+.wsp{position:fixed;right:18px;bottom:18px;z-index:10;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.3);transition:transform .2s}
+.wsp:hover{transform:scale(1.1)}
+.wsp svg{width:30px;height:30px;fill:#fff}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .hero h1 span b{transform:none}
+}
+
+/* ---------- Accesibilidad y menú celular ---------- */
+.skip{position:absolute;left:-999px;top:0;background:var(--amarillo);color:#000;padding:10px 16px;z-index:20}
+.skip:focus{left:10px;top:10px}
+:focus-visible{outline:3px solid var(--amarillo);outline-offset:3px}
+section[id]{scroll-margin-top:70px}
+header.scroll{box-shadow:0 2px 14px rgba(0,0,0,.3)}
+nav a.activo{color:var(--amarillo)}
+.menu-btn{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:24px;height:2px;background:var(--arena);position:relative;transition:.3s}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+.menu-btn span::before{top:-7px}
+.menu-btn span::after{top:7px}
+header.abierto .menu-btn span{background:transparent}
+header.abierto .menu-btn span::before{top:0;transform:rotate(45deg)}
+header.abierto .menu-btn span::after{top:0;transform:rotate(-45deg)}
+@media(max-width:700px){
+  .menu-btn{display:block}
+  nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--verde);padding:8px 5vw 20px;transform:translateY(-130%);visibility:hidden;transition:transform .35s,visibility .35s}
+  header.abierto nav{transform:none;visibility:visible}
+  nav a.link{display:block;padding:14px 0;border-bottom:1px solid rgba(239,228,204,.15)}
+  nav .btn{margin-top:14px;text-align:center}
+}
+/* Tarjetas abiertas con toque (celular) */
+.tarjeta.abierta .detalle{transform:none}
+.tarjeta.abierta .nombre{opacity:0}
+.tarjeta.abierta img,.tarjeta.abierta .img{transform:scale(1.12) rotate(-2deg)}
+</style>
 </head>
 <body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
 
-    <!-- ENCABEZADO -->
-    <header>
-        <div class="logo">Cuarto de Milla</div>
-        <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#productos">Productos</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
-    </header>
+<header>
+  <a class="logo" href="#inicio">Cuarto de Milla</a>
+  <button class="menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span></button>
+  <nav id="menu" aria-label="Principal">
+    <a class="link" href="#historia">Historia</a>
+    <a class="link" href="#proceso">Cómo se hace</a>
+    <a class="link" href="#yerbas">Yerbas</a>
+    <a class="link" href="#mundo">Mundo</a>
+    <a class="link" href="#contacto">Contacto</a>
+    <!-- CAMBIAR si cambia el link de la tienda -->
+    <a class="btn" href="https://yerbaterasanjorge.mitiendanube.com/" target="_blank" rel="noopener">Comprar</a>
+  </nav>
+</header>
 
-    <!-- PORTADA PRINCIPAL -->
-    <section class="hero" id="inicio">
-        <h1>DEL ORIGEN A TU MATE</h1>
-        <p>Bienvenidos amigos materos</p>
-        <a href="#productos" class="boton">Ver productos</a>
-    </section>
+<main id="contenido">
+<!-- PORTADA: poné tu foto en la carpeta img/ con el nombre ruinas.jpg -->
+<section class="hero" id="inicio">
+  <div>
+    <h1><span><b>Del origen</b></span><span><b>a tu mate</b></span></h1>
+    <p>Yerba mate de Corpus, Misiones. Bienvenidos, amigos materos.</p>
+    <div class="acciones">
+      <a class="btn" href="https://yerbaterasanjorge.mitiendanube.com/" target="_blank" rel="noopener">Comprar en la tienda</a>
+      <a class="btn claro" href="#yerbas">Conocer las yerbas</a>
+    </div>
+  </div>
+</section>
 
-    <!-- SOBRE NOSOTROS -->
-    <section class="nosotros" id="nosotros">
-        <h2>Quiénes somos</h2>
-        <p>En Cuarto de Milla seleccionamos lo mejor del origen para que cada mate sea un momento único. Calidad, tradición y pasión en cada hoja.</p>
-    </section>
+<!-- ORIGEN: foto opcional img/origen.jpg. Editá el texto con tus palabras. -->
+<section id="origen">
+  <div class="origen">
+    <div>
+      <h2>Nacida en tierra colorada</h2>
+      <p>Somos la Yerbatera San Jorge, y hacemos yerba mate en Corpus, Misiones, entre ruinas jesuíticas, tierra roja y monte.</p>
+      <p>Cada paquete lleva algo de ese lugar. Por eso cuidamos la yerba desde el origen hasta tu mate.</p>
+      <p>Ruta 6, Lote 47, Corpus.</p>
+    </div>
+    <div class="foto" role="img" aria-label="Paisaje de Corpus, Misiones"></div>
+  </div>
+</section>
 
-    <!-- PRODUCTOS -->
-    <section class="productos" id="productos">
-        <h2>Nuestros productos</h2>
-        <div class="tarjetas">
-            <div class="tarjeta">
-                <h3>Yerba Tradicional</h3>
-                <p>Clásica, equilibrada y rendidora.</p>
-                <span class="precio">$2.500</span>
-            </div>
-            <div class="tarjeta">
-                <h3>Yerba Compuesta</h3>
-                <p>Con hierbas serranas para un sabor distinto.</p>
-                <span class="precio">$2.800</span>
-            </div>
-            <div class="tarjeta">
-                <h3>Yerba Premium</h3>
-                <p>Selección especial, estacionada.</p>
-                <span class="precio">$3.200</span>
-            </div>
-        </div>
-    </section>
+<!-- HISTORIA: reemplazá estos textos por la historia real de la yerbatera
+     (quién la fundó, cuándo, cómo empezó). Preguntale a tu contacto en la empresa. -->
+<section id="historia">
+  <div class="historia">
+    <h2>Nuestra historia</h2>
+    <p>Acá va la historia de la Yerbatera San Jorge: quién la empezó, en qué año y cómo creció.</p>
+    <p>Contá también por qué nacieron las marcas Cuarto de Milla y Herencia Guaraní, y qué significa cada nombre.</p>
+  </div>
+</section>
 
-    <!-- CONTACTO -->
-    <section class="contacto" id="contacto">
-        <h2>Contacto</h2>
-        <p>Escribinos por WhatsApp o seguinos en redes.</p>
-        <a href="#" class="boton">WhatsApp</a>
-    </section>
+<!-- CÓMO SE HACE: son los pasos generales de la yerba mate.
+     Ajustalos a cómo lo hacen ellos de verdad (podés borrar o agregar pasos). -->
+<section class="proceso" id="proceso">
+  <h2>Cómo se hace</h2>
+  <ol class="pasos">
+    <li><h3>Cosecha</h3><p>Se cortan las ramas del yerbal con sus hojas.</p></li>
+    <li><h3>Sapecado</h3><p>Las hojas pasan por el fuego para frenar la oxidación.</p></li>
+    <li><h3>Secado</h3><p>Se secan hasta perder casi toda la humedad.</p></li>
+    <li><h3>Canchado y molienda</h3><p>Se trituran hasta lograr el tamaño de la yerba.</p></li>
+    <li><h3>Estacionamiento</h3><p>Reposa un tiempo para que gane sabor.</p></li>
+    <li><h3>Empaque</h3><p>Se envasa y llega a tu mate.</p></li>
+  </ol>
+</section>
 
-    <!-- PIE DE PÁGINA -->
-    <footer>
-        <p>© 2026 Cuarto de Milla · Todos los derechos reservados</p>
-    </footer>
+<!-- QUÉ LA HACE DIFERENTE: completá con lo que realmente las distingue -->
+<section class="diferencia" id="diferencia">
+  <h2>Qué la hace diferente</h2>
+  <div class="grilla-dif">
+    <div class="dif"><h3>Elaborada con palo</h3><p>Una yerba con cuerpo y sabor suave.</p></div>
+    <div class="dif"><h3>Hecha en Corpus, Misiones</h3><p>Tierra colorada y monte, a metros de las ruinas jesuíticas.</p></div>
+    <div class="dif"><h3>Escribí acá tu diferencial</h3><p>Por ejemplo: tiempo de estacionamiento, molienda, tradición familiar.</p></div>
+  </div>
+</section>
 
+<!-- YERBAS: pasá el mouse (o tocá en el celu) para ver el detalle.
+     Para agregar una yerba más, copiá un bloque <article class="tarjeta"> entero. -->
+<section class="yerbas" id="yerbas">
+  <h2>Nuestras yerbas</h2>
+  <p class="sub">Pasá el mouse por arriba de cada una, o tocala si estás en el celular.</p>
+  <div class="grilla">
+
+    <article class="tarjeta" tabindex="0">
+      <div class="img">Cuarto de Milla</div>
+      <img src="img/cuarto-de-milla.jpg" alt="Yerba Cuarto de Milla" onerror="this.remove()">
+      <div class="nombre">Cuarto de Milla</div>
+      <div class="detalle">
+        <h3>Cuarto de Milla</h3>
+        <p>Yerba mate de Corpus, Misiones. Escribí acá cómo es: sabor, cuerpo, para quién es ideal.</p>
+        <a class="btn" href="https://yerbaterasanjorge.mitiendanube.com/" target="_blank" rel="noopener">Comprar</a>
+      </div>
+    </article>
+
+    <article class="tarjeta" tabindex="0">
+      <div class="img">Herencia Guaraní</div>
+      <img src="img/herencia-guarani.jpg" alt="Yerba Herencia Guaraní" onerror="this.remove()">
+      <div class="nombre">Herencia Guaraní</div>
+      <div class="detalle">
+        <h3>Herencia Guaraní</h3>
+        <p>Yerba mate elaborada con palo. Sumá acá lo que la hace especial.</p>
+        <a class="btn" href="https://yerbaterasanjorge.mitiendanube.com/" target="_blank" rel="noopener">Comprar</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- YERBA POR EL MUNDO: subí tus fotos a la carpeta img/ con estos nombres.
+     Para cambiar el lugar, editá el texto del figcaption y el nombre del archivo. -->
+<section class="mundo" id="mundo">
+  <h2>Yerba mate por el mundo</h2>
+  <p class="sub">El mate se toma en muchos lugares, cada uno a su manera.</p>
+  <div class="galeria">
+    <figure class="foto-mundo"><div class="ph">Paraguay</div><img src="img/mundo-paraguay.jpg" alt="Tereré en Paraguay" onerror="this.remove()"><figcaption>Paraguay: el tereré, bien frío</figcaption></figure>
+    <figure class="foto-mundo"><div class="ph">Uruguay</div><img src="img/mundo-uruguay.jpg" alt="Mate en Uruguay" onerror="this.remove()"><figcaption>Uruguay: mate a todas horas</figcaption></figure>
+    <figure class="foto-mundo"><div class="ph">Brasil</div><img src="img/mundo-brasil.jpg" alt="Chimarrão en Brasil" onerror="this.remove()"><figcaption>Brasil: el chimarrão</figcaption></figure>
+    <figure class="foto-mundo"><div class="ph">Siria</div><img src="img/mundo-siria.jpg" alt="Mate en Siria" onerror="this.remove()"><figcaption>Siria: gran consumidora de yerba</figcaption></figure>
+    <figure class="foto-mundo"><div class="ph">Chile</div><img src="img/mundo-chile.jpg" alt="Mate en Chile" onerror="this.remove()"><figcaption>Chile</figcaption></figure>
+    <figure class="foto-mundo"><div class="ph">Misiones</div><img src="img/mundo-misiones.jpg" alt="Mate en Misiones" onerror="this.remove()"><figcaption>Misiones: donde todo empieza</figcaption></figure>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="contacto">
+    <h2>Visitanos o escribinos</h2>
+    <p>Lote 47, Ruta 6, Corpus, Misiones.</p>
+    <p>Escribinos por WhatsApp o seguinos en Instagram.</p>
+    <div class="acciones">
+      <!-- El número de WhatsApp se cambia en el bloque CONFIGURACIÓN, abajo de todo en este archivo -->
+      <a class="btn" href="#contacto" data-wsp target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <a class="btn claro" href="https://www.instagram.com/yerbamateherenciaguarani/" data-instagram target="_blank" rel="noopener">Instagram</a>
+      <a class="btn claro" href="https://www.google.com/maps/search/?api=1&query=Yerbatera+San+Jorge+Corpus+Misiones" target="_blank" rel="noopener">Cómo llegar</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© <span id="anio">2026</span> Cuarto de Milla · Yerbatera San Jorge</footer>
+
+<a class="wsp" href="#contacto" data-wsp target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3a13 13 0 0 0-11 19.8L3 29l6.400-2A13 13 0 1 0 16 3zm0 2.400A10.600 10.600 0 1 1 10.300 25l-.4-.2-3.700 1.100 1.200-3.600-.3-.4A10.600 10.600 0 0 1 16 5.400zm-4 5.300c-.3 0-.7.100-1 .5-.4.400-1.300 1.300-1.300 3.100s1.300 3.600 1.500 3.800c.2.300 2.600 4.100 6.400 5.600 3.100 1.200 3.700 1 4.400.9.700-.1 2.200-.9 2.500-1.800.3-.9.300-1.600.2-1.800-.1-.2-.3-.3-.7-.5l-2.200-1.100c-.3-.1-.6-.2-.8.200l-1 1.200c-.2.200-.4.300-.7.100-.4-.2-1.500-.6-2.800-1.700-1-.9-1.700-2-1.900-2.400-.2-.4 0-.5.200-.7l.5-.6c.2-.2.200-.4.400-.6.100-.2 0-.4 0-.6l-1-2.400c-.3-.6-.5-.6-.8-.6z"/></svg>
+</a>
+
+<script>
+/* =========================================================
+   CONFIGURACIÓN: acá editás tus datos (solo esta parte)
+   ========================================================= */
+const CONFIG = {
+  // Número de WhatsApp: 54 + 9 + código de área (sin 0) + número.
+  // Todo junto, sin espacios, sin + y sin guiones.
+  // Ejemplo: "5493764123456". Si lo dejás vacío "", el botón se oculta.
+  whatsapp: "",
+
+  // Mensaje que aparece escrito cuando alguien toca el botón
+  mensaje: "¡Hola! Quiero consultar por la yerba Cuarto de Milla.",
+
+  // Usuario de Instagram, sin @. Si lo dejás vacío "", el botón se oculta.
+  instagram: "yerbamateherenciaguarani",
+};
+/* ========================================================= */
+
+
+/* ---------- WhatsApp e Instagram ---------- */
+(function () {
+  const numero = CONFIG.whatsapp.replace(/\D/g, "");
+  document.querySelectorAll("[data-wsp]").forEach(function (a) {
+    if (numero) {
+      a.href = "https://wa.me/" + numero + "?text=" + encodeURIComponent(CONFIG.mensaje);
+    } else {
+      a.style.display = "none"; // sin número cargado, no se muestra
+    }
+  });
+
+  const usuario = CONFIG.instagram.replace(/^@/, "").trim();
+  document.querySelectorAll("[data-instagram]").forEach(function (a) {
+    if (usuario) {
+      a.href = "https://www.instagram.com/" + usuario + "/";
+    } else {
+      a.style.display = "none";
+    }
+  });
+})();
+
+
+/* ---------- Menú del celular ---------- */
+(function () {
+  const header = document.querySelector("header");
+  const boton = document.querySelector(".menu-btn");
+  if (!header || !boton) return;
+
+  function cambiar(abrir) {
+    header.classList.toggle("abierto", abrir);
+    boton.setAttribute("aria-expanded", abrir);
+    boton.setAttribute("aria-label", abrir ? "Cerrar menú" : "Abrir menú");
+  }
+
+  boton.addEventListener("click", function () {
+    cambiar(!header.classList.contains("abierto"));
+  });
+  // Se cierra al tocar un link o al apretar Escape
+  document.querySelectorAll("nav a").forEach(function (a) {
+    a.addEventListener("click", function () { cambiar(false); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") cambiar(false);
+  });
+
+  // Sombra en el menú cuando bajás
+  function sombra() { header.classList.toggle("scroll", window.scrollY > 20); }
+  window.addEventListener("scroll", sombra, { passive: true });
+  sombra();
+})();
+
+
+/* ---------- Link del menú activo según la sección ---------- */
+(function () {
+  const links = document.querySelectorAll("nav a.link");
+  if (!("IntersectionObserver" in window) || !links.length) return;
+
+  const observador = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (entrada) {
+      if (!entrada.isIntersecting) return;
+      links.forEach(function (a) {
+        a.classList.toggle("activo", a.getAttribute("href") === "#" + entrada.target.id);
+      });
+    });
+  }, { rootMargin: "-40% 0px -55% 0px" });
+
+  links.forEach(function (a) {
+    const seccion = document.querySelector(a.getAttribute("href"));
+    if (seccion) observador.observe(seccion);
+  });
+})();
+
+
+/* ---------- Tarjetas de yerbas: tocar para abrir (celular) ---------- */
+(function () {
+  const tarjetas = document.querySelectorAll(".tarjeta");
+
+  function alternar(tarjeta) {
+    const abrir = !tarjeta.classList.contains("abierta");
+    tarjetas.forEach(function (t) { t.classList.remove("abierta"); });
+    tarjeta.classList.toggle("abierta", abrir);
+  }
+
+  tarjetas.forEach(function (tarjeta) {
+    tarjeta.addEventListener("click", function (e) {
+      if (e.target.closest("a")) return; // el botón Comprar funciona normal
+      alternar(tarjeta);
+    });
+    tarjeta.addEventListener("keydown", function (e) {
+      if (e.target !== tarjeta) return;
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        alternar(tarjeta);
+      }
+    });
+  });
+})();
+
+
+/* ---------- Año automático en el pie de página ---------- */
+(function () {
+  const anio = document.getElementById("anio");
+  if (anio) anio.textContent = new Date().getFullYear();
+})();
+</script>
 </body>
 </html>
