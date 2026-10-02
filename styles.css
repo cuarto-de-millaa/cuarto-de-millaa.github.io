@@ -1,0 +1,135 @@
+:root{
+  --verde:#1F3324;      /* verde yerba oscuro */
+  --verde-2:#2F4A32;
+  --terracota:#B5482A;  /* el rojo de las ruinas */
+  --arena:#EFE4CC;      /* fondo claro */
+  --amarillo:#F2C318;   /* el del paquete */
+  --cielo:#4F7CA3;
+  --texto:#22261F;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--texto);background:var(--arena);line-height:1.6;font-size:17px}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+/* ---------- Menú ---------- */
+header{position:fixed;inset:0 0 auto 0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(31,51,36,.92);backdrop-filter:blur(6px)}
+.logo{font-family:var(--serif);font-weight:700;color:var(--arena);text-decoration:none;font-size:1.2rem}
+nav{display:flex;gap:22px;align-items:center}
+nav a{color:var(--arena);text-decoration:none;font-size:.95rem}
+nav a:hover{color:var(--amarillo)}
+.btn{display:inline-block;padding:13px 26px;border-radius:999px;background:var(--terracota);color:#fff;text-decoration:none;font-weight:700;border:2px solid var(--terracota);transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px);background:#963A20}
+.btn.claro{background:transparent;color:var(--arena);border-color:var(--arena)}
+.btn.claro:hover{background:var(--arena);color:var(--verde)}
+nav .btn{padding:8px 18px}
+
+/* ---------- Portada ---------- */
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding:120px 5vw 9vh;color:var(--arena);
+  background:
+   linear-gradient(to top,rgba(31,51,36,.95) 5%,rgba(31,51,36,.25) 60%,rgba(31,51,36,.35)),
+   url('img/ruinas.jpg') center/cover,
+   var(--verde-2)}
+.hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.8rem,9vw,6.5rem);line-height:1.02;letter-spacing:-.02em;max-width:12ch}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 span b{display:block;font-weight:inherit;transform:translateY(105%);animation:sube .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 span:nth-child(2) b{animation-delay:.15s;font-style:italic;color:var(--amarillo)}
+.hero h1 span:nth-child(3) b{animation-delay:.3s}
+@keyframes sube{to{transform:none}}
+.hero p{margin:22px 0 30px;max-width:38ch;font-size:1.15rem}
+.acciones{display:flex;gap:14px;flex-wrap:wrap}
+
+/* ---------- Secciones ---------- */
+section{padding:clamp(60px,10vw,110px) 5vw}
+h2{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin-bottom:20px;color:var(--verde)}
+.origen{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);align-items:center;max-width:1100px;margin:auto}
+.origen p{font-family:var(--serif);font-size:1.15rem;line-height:1.8;margin-bottom:14px}
+.origen .foto{aspect-ratio:4/5;border-radius:200px 200px 12px 12px;background:var(--terracota) url('img/origen.jpg') center/cover}
+@media(max-width:760px){.origen{grid-template-columns:1fr}.origen .foto{aspect-ratio:4/3;border-radius:12px}}
+
+/* ---------- Yerbas (con animación al pasar el mouse) ---------- */
+.yerbas{background:var(--verde);color:var(--arena)}
+.yerbas h2{color:var(--arena);text-align:center}
+.yerbas .sub{text-align:center;max-width:46ch;margin:0 auto 50px}
+.grilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;max-width:1000px;margin:auto}
+.tarjeta{position:relative;overflow:hidden;border-radius:18px;aspect-ratio:3/4;background:var(--verde-2);cursor:pointer;outline-offset:4px}
+.tarjeta .img{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.6rem;text-align:center;padding:20px;color:var(--amarillo);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.tarjeta img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.tarjeta:hover img,.tarjeta:focus-within img,.tarjeta:hover .img,.tarjeta:focus-within .img{transform:scale(1.12) rotate(-2deg)}
+.tarjeta .nombre{position:absolute;left:0;right:0;bottom:0;padding:22px;font-family:var(--serif);font-size:1.5rem;background:linear-gradient(to top,rgba(31,51,36,.9),transparent);transition:opacity .3s}
+.tarjeta .detalle{position:absolute;inset:auto 0 0 0;padding:26px 22px;background:var(--terracota);color:#fff;transform:translateY(101%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.tarjeta:hover .detalle,.tarjeta:focus-within .detalle{transform:none}
+.tarjeta:hover .nombre,.tarjeta:focus-within .nombre{opacity:0}
+.detalle h3{font-family:var(--serif);font-size:1.4rem;margin-bottom:6px}
+.detalle p{font-size:.95rem;margin-bottom:16px}
+.detalle .btn{background:var(--arena);color:var(--terracota);border-color:var(--arena);padding:10px 22px}
+
+/* ---------- Historia, proceso, diferencia ---------- */
+.historia{max-width:760px;margin:auto}
+.historia p{font-family:var(--serif);font-size:1.15rem;line-height:1.8;margin-bottom:14px}
+.proceso{background:#E4D5B5}
+.proceso h2,.diferencia h2,.mundo h2{text-align:center}
+.pasos{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px;max-width:1100px;margin:40px auto 0;counter-reset:paso}
+.pasos li{counter-increment:paso;position:relative;padding-top:58px}
+.pasos li::before{content:counter(paso);position:absolute;top:0;left:0;width:44px;height:44px;border-radius:50%;background:var(--terracota);color:#fff;font-family:var(--serif);font-size:1.3rem;display:grid;place-items:center}
+.pasos h3,.dif h3{font-family:var(--serif);font-size:1.3rem;color:var(--verde);margin-bottom:6px}
+.grilla-dif{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;max-width:1000px;margin:40px auto 0}
+.dif{padding:6px 0 6px 20px;border-left:5px solid var(--terracota)}
+
+/* ---------- Yerba por el mundo ---------- */
+.mundo .sub{text-align:center;max-width:46ch;margin:0 auto 40px}
+.galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:1100px;margin:auto}
+.foto-mundo{position:relative;overflow:hidden;aspect-ratio:1;border-radius:14px;background:var(--cielo)}
+.foto-mundo .ph{position:absolute;inset:0;display:grid;place-items:center;padding:16px;text-align:center;font-family:var(--serif);font-size:1.3rem;color:#fff}
+.foto-mundo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.foto-mundo:hover img{transform:scale(1.1)}
+.foto-mundo figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 12px;color:#fff;font-size:.95rem;background:linear-gradient(to top,rgba(0,0,0,.7),transparent)}
+
+/* ---------- Contacto ---------- */
+.contacto{text-align:center;max-width:700px;margin:auto}
+.contacto p{margin-bottom:10px}
+.contacto .acciones{justify-content:center;margin-top:26px}
+.contacto .btn.claro{color:var(--verde);border-color:var(--verde)}
+.contacto .btn.claro:hover{background:var(--verde);color:var(--arena)}
+footer{background:var(--verde);color:var(--arena);text-align:center;padding:26px 5vw;font-size:.9rem}
+
+/* Botón flotante de WhatsApp */
+.wsp{position:fixed;right:18px;bottom:18px;z-index:10;width:56px;height:56px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.3);transition:transform .2s}
+.wsp:hover{transform:scale(1.1)}
+.wsp svg{width:30px;height:30px;fill:#fff}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .hero h1 span b{transform:none}
+}
+
+/* ---------- Accesibilidad y menú celular ---------- */
+.skip{position:absolute;left:-999px;top:0;background:var(--amarillo);color:#000;padding:10px 16px;z-index:20}
+.skip:focus{left:10px;top:10px}
+:focus-visible{outline:3px solid var(--amarillo);outline-offset:3px}
+section[id]{scroll-margin-top:70px}
+header.scroll{box-shadow:0 2px 14px rgba(0,0,0,.3)}
+nav a.activo{color:var(--amarillo)}
+.menu-btn{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:24px;height:2px;background:var(--arena);position:relative;transition:.3s}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+.menu-btn span::before{top:-7px}
+.menu-btn span::after{top:7px}
+header.abierto .menu-btn span{background:transparent}
+header.abierto .menu-btn span::before{top:0;transform:rotate(45deg)}
+header.abierto .menu-btn span::after{top:0;transform:rotate(-45deg)}
+@media(max-width:700px){
+  .menu-btn{display:block}
+  nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--verde);padding:8px 5vw 20px;transform:translateY(-130%);visibility:hidden;transition:transform .35s,visibility .35s}
+  header.abierto nav{transform:none;visibility:visible}
+  nav a.link{display:block;padding:14px 0;border-bottom:1px solid rgba(239,228,204,.15)}
+  nav .btn{margin-top:14px;text-align:center}
+}
+/* Tarjetas abiertas con toque (celular) */
+.tarjeta.abierta .detalle{transform:none}
+.tarjeta.abierta .nombre{opacity:0}
+.tarjeta.abierta img,.tarjeta.abierta .img{transform:scale(1.12) rotate(-2deg)}
+
