@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cuarto de Milla · Yerba mate de Corpus, Misiones</title>
-<meta name="description" content="Cuarto de Milla y Herencia Guaraní: yerba mate de la Yerbatera San Jorge, en Corpus, Misiones. Historia, proceso y compra online.">
+<meta name="description" content="Cuarto de Milla y Herencia Guaraní: yerba mate de la Yerbatera San Jorge, en Corpus, Misiones. Historia, proceso y contacto.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0A1410">
 <meta name="color-scheme" content="dark">
@@ -35,7 +35,8 @@
   "image":"https://cuarto-de-millaa.github.io/img/ruinas.jpg",
   "brand":[{"@type":"Brand","name":"Cuarto de Milla"},{"@type":"Brand","name":"Herencia Guaraní"}],
   "address":{"@type":"PostalAddress","streetAddress":"Ruta 6, Lote 47","addressLocality":"Corpus","addressRegion":"Misiones","addressCountry":"AR"},
-  "areaServed":{"@type":"Country","name":"Argentina"}
+  "areaServed":{"@type":"Country","name":"Argentina"},
+  "sameAs":["https://www.instagram.com/yerbamateherenciaguarani/"]
 }
 </script>
 
@@ -366,7 +367,10 @@ img[data-hide-on-error].is-loaded{opacity:1}
 }
 .nav a:hover,.nav a.active{color:var(--text)}
 .nav a:hover::after,.nav a.active::after{transform:scaleX(1)}
-.nav .btn{padding:9px 20px;min-height:40px;font-size:.9rem}
+/* El CTA del menú es un botón: no lleva subrayado ni color atenuado */
+.nav a.btn{color:#fff;padding:9px 20px;min-height:40px;font-size:.9rem}
+.nav a.btn::after{display:none}
+.nav a.btn:hover,.nav a.btn.active{color:#fff}
 
 .menu-btn{
   display:none;
@@ -771,6 +775,14 @@ body.menu-open .menu-btn span::after{top:0;transform:rotate(-45deg)}
 .product-body p em{color:var(--gold);font-style:italic}
 .product-body .btn{padding:11px 22px;font-size:.9rem}
 
+/* Si todavía no hay foto cargada, la tarjeta se compacta
+   en lugar de dejar un hueco enorme */
+.product:not(:has(.product-media img)){
+  aspect-ratio:auto;
+  border-color:var(--line-strong);
+}
+.product:not(:has(.product-media img)) .product-body{padding-top:clamp(60px,8vw,84px)}
+
 /* ==========================================================================
    12. SECCIÓN: MUNDO
    ========================================================================== */
@@ -896,6 +908,14 @@ body.menu-open .menu-btn span::after{top:0;transform:rotate(-45deg)}
   margin-top:2px;
 }
 .contacto-address span{overflow-wrap:anywhere}
+.contacto-address small{
+  display:block;
+  margin-top:5px;
+  color:var(--gold);
+  font-size:clamp(.72rem,.82vw,.78rem);
+  letter-spacing:.04em;
+}
+.contacto-address:hover small{color:var(--gold-bright)}
 
 .contacto-actions{
   display:grid;
@@ -928,6 +948,15 @@ body.menu-open .menu-btn span::after{top:0;transform:rotate(-45deg)}
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+.contacto-handle{
+  margin-top:4px;
+  text-align:center;
+  font-size:.85rem;
+  letter-spacing:.04em;
+  color:var(--text-mute);
+}
+.contacto-handle a{color:var(--text-dim);transition:color var(--dur-fast) var(--ease)}
+.contacto-handle a:hover{color:var(--gold)}
 
 /* ==========================================================================
    14. FOOTER
@@ -963,7 +992,17 @@ body.menu-open .menu-btn span::after{top:0;transform:rotate(-45deg)}
   color:#fff;
   box-shadow:0 10px 24px -10px rgba(0,0,0,.6);
   padding-bottom:env(safe-area-inset-bottom,0);
-  transition:transform var(--dur-base) var(--ease),background var(--dur-base) var(--ease),box-shadow var(--dur-base) var(--ease);
+  transition:
+    transform var(--dur-base) var(--ease),
+    background var(--dur-base) var(--ease),
+    box-shadow var(--dur-base) var(--ease),
+    opacity var(--dur-base) var(--ease);
+}
+/* Se aparta cuando la sección de contacto ya está en pantalla */
+.wsp.is-hidden{
+  opacity:0;
+  transform:translateY(14px) scale(.86);
+  pointer-events:none;
 }
 .wsp:hover{
   transform:translateY(-3px) scale(1.04);
@@ -1001,37 +1040,108 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
    17. RESPONSIVE
    ========================================================================== */
 
-/* Pantallas grandes */
+/* ≥1440 — pantallas grandes */
 @media (min-width:1440px){
   :root{--max:var(--max-wide)}
-  .hero-title{font-size:clamp(3rem,7.5vw,7.5rem)}
+  .hero-title{font-size:clamp(3rem,7.2vw,7.5rem)}
 }
 
-/* Laptop */
-@media (max-width:1200px){
+/* ≤1280 — laptop chica */
+@media (max-width:1280px){
   :root{--pad-x:clamp(18px,4vw,56px)}
 }
 
-/* Tablet horizontal */
+/* ≤1100 — el meta del hero ya no entra sin chocar con los botones */
+@media (max-width:1100px){
+  .hero-meta{display:none}
+}
+
+/* ≤1024 — tablet horizontal */
 @media (max-width:1024px){
   .origen-grid{gap:clamp(28px,4vw,56px)}
   .contacto-grid{gap:clamp(32px,5vw,64px)}
+  .hero-inner{padding-bottom:clamp(48px,6vh,84px)}
 }
 
-/* Tablet vertical */
+/* ≤900 — menú hamburguesa + layouts de una columna */
 @media (max-width:900px){
-  .origen-grid{grid-template-columns:1fr;gap:36px}
-  .origen-media{aspect-ratio:5/4;max-width:560px;margin-inline:auto;width:100%}
+  /* Logo y botón quedan por encima del overlay del menú */
+  .logo{position:relative;z-index:95}
+  .menu-btn{display:inline-flex;position:relative;z-index:95}
 
-  .gallery{grid-template-columns:repeat(4,1fr)}
-  .g-1{grid-column:span 4;aspect-ratio:1.6/1}
-  .g-2,.g-3{grid-column:span 2;aspect-ratio:1.4/1}
-  .g-4,.g-5,.g-6{grid-column:span 2;aspect-ratio:1.4/1}
+  .nav{
+    position:fixed;
+    inset:0;
+    z-index:90;
+    width:100%;
+    height:100dvh;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:2px;
+    padding:calc(var(--header-h) + 16px) var(--pad-x) max(40px,calc(env(safe-area-inset-bottom,0px) + 24px));
+    background:rgba(10,20,16,.985);
+    -webkit-backdrop-filter:blur(20px);
+    backdrop-filter:blur(20px);
+    overscroll-behavior:contain;
+    transform:translateY(-100%);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:
+      transform var(--dur-slow) var(--ease-out),
+      opacity var(--dur-base) var(--ease),
+      visibility 0s linear var(--dur-slow);
+  }
+  body.menu-open .nav{
+    transform:none;
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transition:
+      transform var(--dur-slow) var(--ease-out),
+      opacity var(--dur-base) var(--ease),
+      visibility 0s;
+  }
+
+  .nav a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    max-width:420px;
+    min-height:52px;
+    padding:10px 0;
+    font-family:var(--serif);
+    font-size:clamp(1.3rem,5vw,1.6rem);
+    font-weight:400;
+    letter-spacing:-.02em;
+    color:var(--text);
+  }
+  .nav a::after{display:none}
+  .nav a.active{color:var(--gold-bright)}
+  .nav a.btn{
+    margin-top:26px;
+    min-height:52px;
+    padding:14px 28px;
+    font-family:var(--sans);
+    font-size:1rem;
+  }
+
+  .origen-grid{grid-template-columns:1fr;gap:clamp(28px,4vw,40px)}
+  .origen-media{aspect-ratio:5/4;max-width:560px;margin-inline:auto;width:100%}
 
   .productos-head{flex-direction:column;align-items:flex-start;gap:22px}
   .productos-head .btn{align-self:flex-start}
 
-  .contacto-grid{grid-template-columns:1fr;gap:32px}
+  /* Galería: filas completas, sin celdas huérfanas */
+  .gallery{grid-template-columns:repeat(4,1fr)}
+  .g-1{grid-column:span 4;aspect-ratio:1.8/1}
+  .g-2,.g-3{grid-column:span 2;aspect-ratio:1.45/1}
+  .g-4,.g-5{grid-column:span 2;aspect-ratio:1.45/1}
+  .g-6{grid-column:span 4;aspect-ratio:2.4/1}
+
+  .contacto-grid{grid-template-columns:1fr;gap:clamp(28px,4vw,40px)}
   .contacto-info{
     display:flex;
     flex-direction:column;
@@ -1040,68 +1150,20 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
   }
   .contacto-info .eyebrow{justify-content:center}
   .contacto-info .h2{margin-inline:auto;text-align:center}
-  .contacto-address{margin-inline:auto}
+  .contacto-address{margin-inline:auto;justify-content:center;text-align:center}
 
-  .contacto-actions{max-width:520px;margin-inline:auto}
+  .contacto-actions{max-width:560px;margin-inline:auto;width:100%}
 }
 
-/* Móvil grande / tablet chica */
+/* ≤768 — móvil grande / tablet chica */
 @media (max-width:768px){
   :root{
     --header-h:64px;
-    --pad-x:clamp(16px,4vw,24px);
+    --pad-x:clamp(16px,4.2vw,24px);
     --pad-y:clamp(56px,9vw,96px);
   }
 
-  .menu-btn{display:inline-flex}
-  .nav{
-    position:fixed;
-    inset:0;
-    z-index:90;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:4px;
-    padding:calc(var(--header-h) + 24px) var(--pad-x) 40px;
-    background:rgba(10,20,16,.98);
-    -webkit-backdrop-filter:blur(20px);
-    backdrop-filter:blur(20px);
-    transform:translateY(-100%);
-    opacity:0;
-    pointer-events:none;
-    transition:
-      transform var(--dur-slow) var(--ease-out),
-      opacity var(--dur-base) var(--ease);
-  }
-  body.menu-open .nav{
-    transform:none;
-    opacity:1;
-    pointer-events:auto;
-  }
-
-  .nav a{
-    display:inline-flex;
-    align-items:center;
-    min-height:48px;
-    padding:12px 0;
-    font-family:var(--serif);
-    font-size:clamp(1.35rem,5.5vw,1.7rem);
-    font-weight:400;
-    letter-spacing:-.02em;
-    color:var(--text);
-  }
-  .nav a::after{display:none}
-  .nav a.active{color:var(--gold-bright)}
-  .nav .btn{
-    min-height:50px;
-    margin-top:24px;
-    padding:14px 32px;
-    font-family:var(--sans);
-    font-size:1rem;
-  }
-
-  .hero-meta{display:none}
-  .hero-inner{padding-bottom:clamp(48px,7vh,80px)}
+  .hero-inner{padding-bottom:clamp(44px,6vh,72px)}
   .hero-title{font-size:clamp(2.2rem,10vw,3.6rem)}
   .hero-lede{margin-bottom:clamp(24px,3.5vh,32px)}
   .hero-actions{gap:10px}
@@ -1110,6 +1172,8 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
   .h2{font-size:clamp(1.75rem,6vw,2.6rem)}
   .lede{font-size:1rem;margin-top:18px}
 
+  .step{padding:22px 20px}
+
   .products{grid-template-columns:1fr;gap:22px}
   .product{aspect-ratio:4/5}
   .product-body{padding:24px 22px}
@@ -1117,9 +1181,10 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
 
   .gallery{grid-template-columns:repeat(2,1fr);gap:10px}
   .g-1{grid-column:span 2;aspect-ratio:1.7/1}
-  .g-2,.g-3,.g-4,.g-5,.g-6{grid-column:span 1;aspect-ratio:1/1}
+  .g-2,.g-3,.g-4,.g-5{grid-column:span 1;aspect-ratio:1/1}
+  .g-6{grid-column:span 2;aspect-ratio:1.7/1}
 
-  .contacto-actions{max-width:100%;gap:10px}
+  .contacto-actions{gap:10px}
   .contacto-actions .btn{
     padding:15px 22px;
     min-height:54px;
@@ -1127,9 +1192,11 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
   }
 
   .footer{flex-direction:column;text-align:center;gap:6px}
+  /* Deja aire abajo para que el botón flotante no tape el texto */
+  body.has-wsp .footer{padding-bottom:calc(clamp(24px,3vw,36px) + 76px)}
 }
 
-/* Móvil */
+/* ≤520 — móvil */
 @media (max-width:520px){
   :root{
     --pad-x:clamp(16px,4.5vw,20px);
@@ -1141,13 +1208,13 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
   .hero-eyebrow::before{width:24px}
   .hero-lede{font-size:.98rem;max-width:100%}
   .hero-actions{flex-direction:column;align-items:stretch}
-  .hero-actions .btn{width:100%}
+  .hero-actions .btn{width:100%;flex:0 0 auto}
 
   .h2{font-size:clamp(1.65rem,7.5vw,2.1rem)}
   .btn{padding:13px 22px;font-size:.92rem}
 
   .origen-text p{font-size:1.05rem}
-  .origen-address{width:100%;padding:11px 16px;font-size:.8rem}
+  .origen-address{width:100%;justify-content:center;padding:11px 16px;font-size:.8rem}
 
   .product{aspect-ratio:5/6}
   .product-body{padding:22px 20px}
@@ -1158,7 +1225,8 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
 
   .gallery{gap:8px}
   .g-1{aspect-ratio:1.5/1}
-  .g-2,.g-3,.g-4,.g-5,.g-6{aspect-ratio:1/1}
+  .g-2,.g-3,.g-4,.g-5{aspect-ratio:1/1}
+  .g-6{aspect-ratio:1.5/1}
   .g-item figcaption{padding:14px 12px 10px;font-size:.78rem}
   .g-item figcaption small{font-size:.6rem;margin-bottom:2px}
 
@@ -1214,7 +1282,7 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
   .eyebrow::before{width:22px}
 
   .btn{padding:12px 18px;font-size:.88rem}
-  .nav .btn{width:100%;max-width:280px}
+  .nav a.btn{max-width:280px}
 
   .step{padding:18px 16px}
   .step::before{margin-bottom:16px}
@@ -1280,8 +1348,8 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
     <a href="#yerbas">Yerbas</a>
     <a href="#mundo">Mundo</a>
     <a href="#contacto">Contacto</a>
-    <a class="btn btn-primary" href="https://yerbaterasanjorge.mitiendanube.com/" target="_blank" rel="noopener">
-      Comprar
+    <a class="btn btn-primary" href="#contacto" data-cta-contacto>
+      Escribinos
       <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
     </a>
   </nav>
@@ -1313,11 +1381,11 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
       </p>
 
       <div class="hero-actions">
-        <a class="btn btn-primary" href="https://yerbaterasanjorge.mitiendanube.com/" target="_blank" rel="noopener">
-          Comprar en la tienda
+        <a class="btn btn-primary" href="#yerbas">
+          Conocer las yerbas
           <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
         </a>
-        <a class="btn btn-ghost" href="#yerbas">Conocer las yerbas</a>
+        <a class="btn btn-ghost" href="#contacto" data-cta-contacto>Escribinos</a>
       </div>
     </div>
 
@@ -1436,8 +1504,8 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
           </h2>
         </div>
 
-        <a class="btn btn-ghost reveal d2" href="https://yerbaterasanjorge.mitiendanube.com/" target="_blank" rel="noopener">
-          Ver todo en la tienda
+        <a class="btn btn-ghost reveal d2" href="#contacto" data-cta-contacto>
+          Consultar stock y envíos
           <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
         </a>
       </div>
@@ -1453,8 +1521,8 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
           <div class="product-body">
             <h3>Cuarto de Milla</h3>
             <p>Yerba mate elaborada con palo, de sabor parejo y cuerpo medio. Ideal para el mate de todos los días: rinde bien, no amarga y mantiene el sabor ronda tras ronda. Envases de 1 kg y 500 g.</p>
-            <a class="btn btn-primary" href="https://yerbaterasanjorge.mitiendanube.com/" target="_blank" rel="noopener">
-              Comprar
+            <a class="btn btn-primary" href="#contacto" data-cta-contacto>
+              Consultar
               <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
             </a>
           </div>
@@ -1469,8 +1537,8 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
           <div class="product-body">
             <h3>Herencia Guaraní</h3>
             <p>Yerba mate elaborada con palo, pensada para quienes buscan un sabor más intenso y tradicional. Un homenaje a los pueblos guaraníes que descubrieron el <em>ka'a</em> y lo convirtieron en ritual.</p>
-            <a class="btn btn-primary" href="https://yerbaterasanjorge.mitiendanube.com/productos/" target="_blank" rel="noopener">
-              Comprar
+            <a class="btn btn-primary" href="#contacto" data-cta-contacto>
+              Consultar
               <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
             </a>
           </div>
@@ -1549,13 +1617,13 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
           <span class="mask-line"><span><em>escribinos</em></span></span>
         </h2>
 
-        <address class="contacto-address reveal d2">
+        <a class="contacto-address reveal d2" href="https://www.google.com/maps/search/?api=1&query=Yerbatera+San+Jorge+Corpus+Misiones" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z"/>
             <circle cx="12" cy="10" r="2.5"/>
           </svg>
-          <span>Lote 47, Ruta 6<br>Corpus, Misiones</span>
-        </address>
+          <span>Lote 47, Ruta 6<br>Corpus, Misiones<small>Abrir en Google Maps</small></span>
+        </a>
       </div>
 
       <div class="contacto-actions reveal d3">
@@ -1570,7 +1638,7 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
             <circle cx="12" cy="12" r="4"/>
             <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
           </svg>
-          <span>Seguinos en Instagram</span>
+          <span>Escribinos por Instagram</span>
         </a>
 
         <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Yerbatera+San+Jorge+Corpus+Misiones" target="_blank" rel="noopener">
@@ -1580,6 +1648,8 @@ section[id]{scroll-margin-top:calc(var(--header-h) + 20px)}
           </svg>
           <span>Cómo llegar</span>
         </a>
+
+        <p class="contacto-handle" data-instagram-handle hidden></p>
       </div>
 
     </div>
@@ -1627,17 +1697,48 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
    ========================================================================== */
 (function initSocialLinks() {
   const numero = (CONFIG.whatsapp || "").replace(/\D/g, "");
+  const waURL = numero
+    ? `https://wa.me/${numero}?text=${encodeURIComponent(CONFIG.mensaje)}`
+    : "";
+
+  // Bloque de contacto y botón flotante: sin número cargado, se ocultan
   $$("[data-wsp]").forEach(a => {
-    if (!numero) return a.remove();
-    a.href = `https://wa.me/${numero}?text=${encodeURIComponent(CONFIG.mensaje)}`;
+    if (!waURL) return a.remove();
+    a.href = waURL;
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+  if (waURL) document.body.classList.add("has-wsp");
+
+  const usuario = (CONFIG.instagram || "").replace(/^@/, "").trim();
+
+  $$("[data-instagram]").forEach(a => {
+    if (!usuario) return a.remove();
+    a.href = `https://www.instagram.com/${usuario}/`;
     a.target = "_blank";
     a.rel = "noopener";
   });
 
-  const usuario = (CONFIG.instagram || "").replace(/^@/, "").trim();
-  $$("[data-instagram]").forEach(a => {
-    if (!usuario) return a.remove();
-    a.href = `https://www.instagram.com/${usuario}/`;
+  // Sin WhatsApp cargado, Instagram pasa a ser la acción principal
+  if (!waURL && usuario) {
+    const ig = $(".contacto-actions [data-instagram]");
+    if (ig) {
+      ig.classList.remove("btn-ghost");
+      ig.classList.add("btn-primary");
+    }
+  }
+
+  // Usuario visible debajo de los botones (refuerza el canal de contacto)
+  const handle = $("[data-instagram-handle]");
+  if (handle && usuario) {
+    handle.innerHTML = `Instagram: <a href="https://www.instagram.com/${usuario}/" target="_blank" rel="noopener">@${usuario}</a>`;
+    handle.hidden = false;
+  }
+
+  // CTAs "Escribinos": directo a WhatsApp si hay número, si no al bloque de contacto
+  $$("[data-cta-contacto]").forEach(a => {
+    if (!waURL) return;
+    a.href = waURL;
     a.target = "_blank";
     a.rel = "noopener";
   });
@@ -1685,9 +1786,12 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 (function initMobileMenu() {
   const header = $("#header");
   const boton = $("#menuBtn");
+  const menu = $("#menu");
   if (!header || !boton) return;
 
-  const esMovil = () => window.matchMedia("(max-width: 768px)").matches;
+  // Debe coincidir con el breakpoint del CSS
+  const esMovil = () => window.matchMedia("(max-width: 900px)").matches;
+  const abierto = () => document.body.classList.contains("menu-open");
 
   function set(abrir) {
     document.body.classList.toggle("menu-open", abrir);
@@ -1698,22 +1802,51 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 
   boton.addEventListener("click", e => {
     e.stopPropagation();
-    set(!document.body.classList.contains("menu-open"));
+    const abrir = !abierto();
+    set(abrir);
+
+    // Foco al primer enlace para navegación con teclado
+    if (abrir && menu) {
+      const primero = $("a", menu);
+      if (primero) requestAnimationFrame(() => primero.focus({ preventScroll: true }));
+    }
   });
 
   $$(".nav a").forEach(a => a.addEventListener("click", () => set(false)));
 
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && document.body.classList.contains("menu-open")) set(false);
+    if (e.key === "Escape" && abierto()) {
+      set(false);
+      boton.focus({ preventScroll: true });
+    }
+  });
+
+  // Atrapa el foco dentro del menú mientras está abierto
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Tab" || !abierto() || !menu) return;
+
+    const focos = $$("a", menu).filter(el => el.offsetParent !== null);
+    if (!focos.length) return;
+
+    const primero = focos[0];
+    const ultimo = focos[focos.length - 1];
+
+    if (e.shiftKey && document.activeElement === primero) {
+      e.preventDefault();
+      ultimo.focus();
+    } else if (!e.shiftKey && document.activeElement === ultimo) {
+      e.preventDefault();
+      primero.focus();
+    }
   });
 
   document.addEventListener("click", e => {
-    if (!document.body.classList.contains("menu-open")) return;
+    if (!abierto()) return;
     if (!header.contains(e.target)) set(false);
   });
 
   window.addEventListener("resize", () => {
-    if (!esMovil() && document.body.classList.contains("menu-open")) set(false);
+    if (!esMovil() && abierto()) set(false);
   });
 })();
 
@@ -1839,6 +1972,21 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
   }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
 
   secciones.forEach(s => io.observe(s));
+})();
+
+/* ==========================================================================
+   BOTÓN FLOTANTE: se aparta al llegar a contacto
+   ========================================================================== */
+(function initFloatingButton() {
+  const wsp = $(".wsp");
+  const contacto = $("#contacto");
+  if (!wsp || !contacto || !("IntersectionObserver" in window)) return;
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => wsp.classList.toggle("is-hidden", entry.isIntersecting));
+  }, { threshold: 0.18 });
+
+  io.observe(contacto);
 })();
 
 /* ==========================================================================

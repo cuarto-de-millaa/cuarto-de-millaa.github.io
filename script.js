@@ -156,7 +156,7 @@ const CONFIG = {
 
   tarjetas.forEach(function (tarjeta) {
     tarjeta.addEventListener("click", function (e) {
-      if (e.target.closest("a")) return; // el botón Comprar funciona normal
+      if (e.target.closest("a")) return; // los enlaces funcionan normal
       alternar(tarjeta);
     });
     tarjeta.addEventListener("keydown", function (e) {
