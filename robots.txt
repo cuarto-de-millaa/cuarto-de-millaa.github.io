@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://cuarto-de-millaa.github.io/sitemap.xml
